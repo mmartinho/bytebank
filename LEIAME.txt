@@ -18,3 +18,24 @@ Capítulo 01: Conhecendo o Ambiente
     @see src\app\app.module.ts
 5. Colocamos o novo componente no layout principal da app:
     @see src\app\app.component.html
+
+Capítulo 02: Formulário de nova transferencia
+#event-binding, #two-way-data-binding, #property-binding
+
+1. Copiamos alguns estilhos dispoíveis em:
+    @see https://github.com/alura-cursos/1952-angular/blob/aula-2/src/app/nova-transferencia/nova-transferencia.component.scss
+    @see https://github.com/alura-cursos/1952-angular/blob/aula-2/src/styles.scss
+  ...para os respectivos:
+    @see src\app\nova-transferencia\nova-transferencia.component.scss
+    @see src\styles.scss
+3. Estilizamos o Formulário com os estilos:
+    @see src\app\nova-transferencia\nova-transferencia.component.html
+4. Adicionamos o novo módulo de formulários ao módulo da aplicação primcipal:
+    @see src\app\app.module.ts
+5. E utilizamos o evento "ngSubmit" do formulário em:
+    @see src\app\nova-transferencia\nova-transferencia.component.html
+   ...associando-o ao método "transferir()" do componente (event binding):
+    @see src\app\nova-transferencia\nova-transferencia.component.ts
+6. Usando o "two-way data binding", interassociamos as propriedades do componente com os campos dos formulário:
+    @src\app\nova-transferencia\nova-transferencia.component.html
+
