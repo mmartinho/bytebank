@@ -1,0 +1,20 @@
+*********************************************************
+AVA: cursos.alura.com.br
+Formação: Angular (Nova Formação de Maio/2021)
+Curso: Angular: Começando com o framework
+Data Início: 17/05/2021
+*********************************************************
+
+Capítulo 01: Conhecendo o Ambiente
+#cli, #ng
+
+1. Criamos uma aplicação Angular 11:
+    >ng new bytebank
+2. Entramos no novo diretorio criado "bytebank", e executamos a primeira compilação:
+    >ng serve --open
+3. Criamos o primeiro componente:
+    @see src\app\nova-transferencia
+4. Carregamos o novo componente no módulo principal da app:
+    @see src\app\app.module.ts
+5. Colocamos o novo componente no layout principal da app:
+    @see src\app\app.component.html
