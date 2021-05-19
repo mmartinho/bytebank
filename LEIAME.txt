@@ -39,3 +39,19 @@ Capítulo 02: Formulário de nova transferencia
 6. Usando o "two-way data binding", interassociamos as propriedades do componente com os campos dos formulário:
     @src\app\nova-transferencia\nova-transferencia.component.html
 
+Capítulo 03: Exportando dados do componente
+#component-output, #custom-event-binding
+
+1. Acrescentamos uma nova propriedade de saída (output) no componente da "nova transferencia" que recebe um parametro de
+   evento customizado chamada "aoTransferir"
+    @see src\app\nova-transferencia\nova-transferencia.component.ts
+2. No layout da aplicação principal, na qual está sendo usado o componente da "nova transferencia", associamos o evento
+   de saída um método do componente principal da aplicação "transferir()":
+    @see src\app\app.component.html
+3. No método "transferir()", recebemos o evento em seu parametro, passando-o para uma propriedade do componente:
+    @see src\app\app.component.ts
+4. Estando na propriedade do componente principal, pudemos interpolar os valores no seu respectivo gabarito:
+    @see src\app\app.component.html
+
+
+
