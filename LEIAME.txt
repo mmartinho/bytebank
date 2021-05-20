@@ -53,5 +53,18 @@ Capítulo 03: Exportando dados do componente
 4. Estando na propriedade do componente principal, pudemos interpolar os valores no seu respectivo gabarito:
     @see src\app\app.component.html
 
+Capítulo 04: Transferencias
+#component-input
 
+1. Geramos um novo componente utilizando o CLI:
+    >ng generate component extrato
+   ..colocando-o no layout do app.component:
+    @see src\app\app.component.html
+2. Criamos uma propriedade de "input" "extrato.component", a associamos a propriedade do "app.component" a propriedade de input
+   do "extrato.component"
+   @see src\app\app.component.html
+3. Alteramos o layout do "extrato.component" para exibir uma tabela iterada por "ngFor":
+   @see src\app\app.component.ts
+4. Alteramos o método "transferir" do app.component para empilhar o array de transferencia:
+   @see src\app\app.component.ts
 

@@ -7,10 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bytebank';
-  transferencia: any;
+  /**
+   * array de qualquer coisa
+   */
+  transferencias: any[] = [];
 
   transferir(event: any): void {
     console.log(event);
-    this.transferencia = event;
+    /**
+     * Merge de campos
+     */
+    const transferencia = {...event, data: new Date()};
+    /**
+     * Empilhamento de array
+     */
+    this.transferencias.push(transferencia);
   }
 }
