@@ -2,10 +2,25 @@
 <!--
   Evento aoTransferir e o seu handler transferir
 -->
-<app-nova-transferencia (aoTransferir)="transferir($event)"></app-nova-transferencia>
+<!-- <app-nova-transferencia (aoTransferir)="transferir($event)"></app-nova-transferencia> -->
 
 <!--
   Estou passando o conteúdo da propriedade componente do app.component ""
   para a propriedade input do componente extrato []
 -->
-<app-extrato [transferencias]="transferencias"></app-extrato>
+<!-- <app-extrato [transferencias]="transferencias"></app-extrato> -->
+
+<!--
+  Agora utilizando service, não preciso associar mais nada no app.component.
+  A comunicação entre os componentes nova-transferencia e extrato é feita
+  via injeção de serviço nos construtores destes.
+-->
+<app-nova-transferencia></app-nova-transferencia>
+
+<!--
+  Agora utilizando service, não preciso mais passar nada pro app.component
+  Trato diretamente no componente extrato, injetado a instancia do service
+  que trabalha com isso.
+  @see src\app\extrato\extrato.component.ts
+-->
+<app-extrato></app-extrato>

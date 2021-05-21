@@ -68,3 +68,18 @@ Capítulo 04: Transferencias
 4. Alteramos o método "transferir" do app.component para empilhar o array de transferencia:
    @see src\app\app.component.ts
 
+Capítulo 05: Service
+
+1. Criamos um novo serviço (injectable) para intermediar a comunicação entre o componente "nova-transação" e "extrato".
+   Dessa vez, criamos uma pasta, e utilizamos o botão direito do mouse nesta, selecionamos a opção "Angular: generate service":
+    @see src\app\services\transferencia.service.spec.ts
+   Tendo um serviço singleton injetável, podemos injetá-lo em cada um dos componentes e usar seus métodos. Bastando
+   que o serviço realize-os
+2. Eliminamos o esquema do emissor/receptor de enveto e usamos a injeção do serviço em ambos os componentes;
+3. Também eliminamos a interferencia do componente principal da app (app.component). O seu papel é apenas de montar o layout
+   principal:
+    @see src\app\app.component.html
+    @see src\app\app.component.ts
+
+
+

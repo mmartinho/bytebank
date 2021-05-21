@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TransferenciaService } from '../services/transferencia.service';
 
 @Component({
   selector: 'app-extrato',
@@ -6,11 +7,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./extrato.component.scss']
 })
 export class ExtratoComponent implements OnInit {
-  @Input() transferencias: any[];
+  /**
+   * //@Input() não precisa ser mais acessado pelo app.component,
+   * pois estamos usando o serviço injetado
+   **/
+  transferencias: any[];
 
-  constructor() { }
+  constructor(private service: TransferenciaService) { }
 
   ngOnInit(): void {
+    this.transferencias = this.service.transferencias;
+  }
+
+  get total() {
+    return this.service.total();
   }
 
 }

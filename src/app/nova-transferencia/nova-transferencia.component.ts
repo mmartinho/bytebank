@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TransferenciaService } from '../services/transferencia.service';
 
 @Component({
   selector: 'app-nova-transferencia',
@@ -11,6 +12,8 @@ export class NovaTransferenciaComponent implements OnInit{
   valor = 10;
   destino = 20;
 
+  constructor(private service: TransferenciaService) {}
+
   ngOnInit(): void {
 
   }
@@ -18,7 +21,15 @@ export class NovaTransferenciaComponent implements OnInit{
   transferir(): void {
     console.log('Solicitada nova transferencia');
     const valorEmitir = {valor: this.valor, destino: this.destino};
-    this.aoTransferir.emit(valorEmitir);
+    /**
+     * Não é mais necessário disparar o evento:
+     * this.aoTransferir.emit(valorEmitir);
+     * ...
+     */
+    /**
+     * ...ao invés disso, uso o serviço singleton injetado:
+     */
+    this.service.adicionar(valorEmitir);
     this.limparCampos();
   }
 
