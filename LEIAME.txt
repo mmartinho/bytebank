@@ -9,77 +9,101 @@ Capítulo 01: Conhecendo o Ambiente
 #cli, #ng
 
 1. Criamos uma aplicação Angular 11:
-    >ng new bytebank
+      >ng new bytebank
 2. Entramos no novo diretorio criado "bytebank", e executamos a primeira compilação:
-    >ng serve --open
+      >ng serve --open
 3. Criamos o primeiro componente:
-    @see src\app\nova-transferencia
+      @see src\app\nova-transferencia
 4. Carregamos o novo componente no módulo principal da app:
-    @see src\app\app.module.ts
+      @see src\app\app.module.ts
 5. Colocamos o novo componente no layout principal da app:
-    @see src\app\app.component.html
+      @see src\app\app.component.html
 
 Capítulo 02: Formulário de nova transferencia
 #event-binding, #two-way-data-binding, #property-binding
 
 1. Copiamos alguns estilhos dispoíveis em:
-    @see https://github.com/alura-cursos/1952-angular/blob/aula-2/src/app/nova-transferencia/nova-transferencia.component.scss
-    @see https://github.com/alura-cursos/1952-angular/blob/aula-2/src/styles.scss
+      @see https://github.com/alura-cursos/1952-angular/blob/aula-2/src/app/nova-transferencia/nova-transferencia.component.scss
+      @see https://github.com/alura-cursos/1952-angular/blob/aula-2/src/styles.scss
   ...para os respectivos:
-    @see src\app\nova-transferencia\nova-transferencia.component.scss
-    @see src\styles.scss
+      @see src\app\nova-transferencia\nova-transferencia.component.scss
+      @see src\styles.scss
 3. Estilizamos o Formulário com os estilos:
-    @see src\app\nova-transferencia\nova-transferencia.component.html
+      @see src\app\nova-transferencia\nova-transferencia.component.html
 4. Adicionamos o novo módulo de formulários ao módulo da aplicação primcipal:
-    @see src\app\app.module.ts
+      @see src\app\app.module.ts
 5. E utilizamos o evento "ngSubmit" do formulário em:
-    @see src\app\nova-transferencia\nova-transferencia.component.html
+      @see src\app\nova-transferencia\nova-transferencia.component.html
    ...associando-o ao método "transferir()" do componente (event binding):
-    @see src\app\nova-transferencia\nova-transferencia.component.ts
+      @see src\app\nova-transferencia\nova-transferencia.component.ts
 6. Usando o "two-way data binding", interassociamos as propriedades do componente com os campos dos formulário:
-    @src\app\nova-transferencia\nova-transferencia.component.html
+      @src\app\nova-transferencia\nova-transferencia.component.html
 
 Capítulo 03: Exportando dados do componente
 #component-output, #custom-event-binding
 
 1. Acrescentamos uma nova propriedade de saída (output) no componente da "nova transferencia" que recebe um parametro de
    evento customizado chamada "aoTransferir"
-    @see src\app\nova-transferencia\nova-transferencia.component.ts
+      @see src\app\nova-transferencia\nova-transferencia.component.ts
 2. No layout da aplicação principal, na qual está sendo usado o componente da "nova transferencia", associamos o evento
    de saída um método do componente principal da aplicação "transferir()":
-    @see src\app\app.component.html
+      @see src\app\app.component.html
 3. No método "transferir()", recebemos o evento em seu parametro, passando-o para uma propriedade do componente:
-    @see src\app\app.component.ts
+      @see src\app\app.component.ts
 4. Estando na propriedade do componente principal, pudemos interpolar os valores no seu respectivo gabarito:
-    @see src\app\app.component.html
+      @see src\app\app.component.html
 
 Capítulo 04: Transferencias
 #component-input
 
 1. Geramos um novo componente utilizando o CLI:
-    >ng generate component extrato
+      >ng generate component extrato
    ..colocando-o no layout do app.component:
-    @see src\app\app.component.html
+      @see src\app\app.component.html
 2. Criamos uma propriedade de "input" "extrato.component", a associamos a propriedade do "app.component" a propriedade de input
    do "extrato.component"
-   @see src\app\app.component.html
+      @see src\app\app.component.html
 3. Alteramos o layout do "extrato.component" para exibir uma tabela iterada por "ngFor":
-   @see src\app\app.component.ts
+      @see src\app\app.component.ts
 4. Alteramos o método "transferir" do app.component para empilhar o array de transferencia:
-   @see src\app\app.component.ts
+      @see src\app\app.component.ts
 
 Capítulo 05: Service
+#injectable, #singleton
 
 1. Criamos um novo serviço (injectable) para intermediar a comunicação entre o componente "nova-transação" e "extrato".
    Dessa vez, criamos uma pasta, e utilizamos o botão direito do mouse nesta, selecionamos a opção "Angular: generate service":
-    @see src\app\services\transferencia.service.spec.ts
+      @see src\app\services\transferencia.service.spec.ts
    Tendo um serviço singleton injetável, podemos injetá-lo em cada um dos componentes e usar seus métodos. Bastando
    que o serviço realize-os
-2. Eliminamos o esquema do emissor/receptor de enveto e usamos a injeção do serviço em ambos os componentes;
-3. Também eliminamos a interferencia do componente principal da app (app.component). O seu papel é apenas de montar o layout
+2. Eliminamos o esquema do emissor/receptor de evento e usamos a injeção do serviço em ambos os componentes;
+3. Também eliminamos a interferência do componente principal da app (app.component). O seu papel é apenas de montar o layout
    principal:
-    @see src\app\app.component.html
-    @see src\app\app.component.ts
+      @see src\app\app.component.html
+      @see src\app\app.component.ts
 
+Capítulo 06: Comunicação HTTP
+#json-server
 
+1. Para simular uma comunicação com um servidor de API, vamos usar a ferramenta: "json-server":
+      >npm install -g json-server
+2. Criamos um novo arquivo para simular os dados:
+      @see dados\db.json
+   ...executando nesta mesmo diretório dos dados o comando:
+      >json-server --watch db.json
+   Isso disponibiliza um servidor API REST na porta 3000
+3. Criamos uma "Interface" para representar o modelo de uma transferência:
+      @see src\models\transferencia.model.ts
+4. Injetamos um novo serviço (do próprio Angular) chamado HttpClient no construtor do serviço de transferência:
+      @see src\app\services\transferencia.service.ts
+   ...acrescentando mais 2 métodos no serviço: um para buscar a lista de transferências realizadas na API e
+   outra para criar uma nova transferência, ambos retornando Observáveis para serem inscritos posteriormente pelo componente
+   de "extrato";
+5. No componente de "nova transferência", acrescentamos um método para criar uma nova transferência usando o
+   o método do serviço com subscrição de observável "nova":
+      @see src\app\nova-transferencia\nova-transferencia.component.ts
+6. E, finalmente, no componente de "extrato", ao iniciar o componente, subescrevemos o observável do serviço que busca
+   as transferências históricas:
+      @see src\app\extrato\extrato.component.ts
+   ...tornando possível realizar a soma dos valores transferidos;
 

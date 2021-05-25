@@ -1,29 +1,45 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Transferencia } from 'src/models/transferencia.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransferenciaService {
+  /**
+   * @deprecated
+   */
   private listaTransferencia: any[];
+  /**
+   * @var
+   */
+  private url = 'http://localhost:3000/transferencias';
 
-  constructor() {
+/*   constructor() {
     this.listaTransferencia = [];
-  }
+  } */
 
-  get transferencias() {
+  /**
+   * @deprecated
+   */
+  get transferencias(): any {
     return this.listaTransferencia;
   }
 
   /**
-   * @param transferencia
+   * @deprecated
    */
-  adicionar(transferencia: any) {
+  adicionar(transferencia: any): void {
     this.hidratar(transferencia);
     /** Empilhamento de array */
     this.listaTransferencia.push(transferencia);
   }
 
-  total() {
+  /**
+   * @deprecated
+   */
+  total(): number {
     let soma = 0;
     this.listaTransferencia.forEach( (transferencia) => {
       soma = soma + transferencia.valor;
@@ -32,9 +48,32 @@ export class TransferenciaService {
   }
 
   /**
-   * @param transferencia
+   * @param httpClient Injeção do client http
    */
-  private hidratar(transferencia: any) {
-    transferencia.data = new Date();
+  constructor(private httpClient: HttpClient) {}
+
+  /**
+   * @param transferencia A transferencia a hidratar
+   */
+  private hidratar(transferencia: Transferencia): void {
+    transferencia.data = new Date().toDateString();
   }
+
+  /**
+   * Repassa todas as transferencias históricas em um observável
+   * @returns Observable<Transferencia[]>
+   */
+  todas(): Observable<Transferencia[]> {
+    return this.httpClient.get<Transferencia[]>(this.url);
+  }
+
+  /**
+   * Repassa a nova transferencia em um observável
+   * @returns Observable<Transferencia>
+   */
+  nova(transferencia: Transferencia): Observable<Transferencia> {
+    this.hidratar(transferencia);
+    return this.httpClient.post<Transferencia>(this.url, transferencia);
+  }
+
 }
