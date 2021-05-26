@@ -107,3 +107,17 @@ Capítulo 06: Comunicação HTTP
       @see src\app\extrato\extrato.component.ts
    ...tornando possível realizar a soma dos valores transferidos;
 
+Capítulo 07: Rotas
+
+1. Criamos o módulo de rotas, visto que negamos a sua criação na incialização do projeto:
+      @see src\app\app.routing.module.ts
+   ...impotando-o no modulo principal da app
+2. Removemos os componentes do layout principal da app, inserindo o componente router outlet:
+      @see src\app\app.component.html
+3. Adicionamos uma nova instrução ao método "realizar()" para redirecionar para o componente de extrato
+      @see src\app\nova-transferencia\nova-transferencia.component.ts
+4. Reestilizamos o layout principal da app, para mostrar os links de encaminhamento de rota correspondentes
+   aos componentes:
+      @see src\app\app.component.html
+
+
